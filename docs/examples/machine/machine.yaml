@@ -1,0 +1,7 @@
+note: Machine Example
+sample: |
+  apiVersion: wing.tarmak.io/v1alpha1
+  kind: Machine
+  metadata:
+    name: machine-example
+  spec:

@@ -34,6 +34,13 @@ var (
 		func() runtime.Object { return &MachineList{} }, // Register versioned resource list
 		&MachineStrategy{builders.StorageStrategySingleton},
 	)
+	wingMachineDeploymentStorage = builders.NewApiResource( // Resource status endpoint
+		wing.InternalMachineDeployment,
+		MachineDeploymentSchemeFns{},
+		func() runtime.Object { return &MachineDeployment{} },     // Register versioned resource
+		func() runtime.Object { return &MachineDeploymentList{} }, // Register versioned resource list
+		&MachineDeploymentSrategy{builders.StorageStrategySingleton},
+	)
 	wingMachineSetStorage = builders.NewApiResource( // Resource status endpoint
 		wing.InternalMachineSet,
 		MachineSetSchemeFns{},
@@ -49,6 +56,13 @@ var (
 			func() runtime.Object { return &Machine{} },     // Register versioned resource
 			func() runtime.Object { return &MachineList{} }, // Register versioned resource list
 			&MachineStatusStrategy{builders.StatusStorageStrategySingleton},
+		), wingMachineDeploymentStorage,
+		builders.NewApiResource( // Resource status endpoint
+			wing.InternalMachineDeploymentStatus,
+			MachineDeploymentSchemeFns{},
+			func() runtime.Object { return &MachineDeployment{} },     // Register versioned resource
+			func() runtime.Object { return &MachineDeploymentList{} }, // Register versioned resource list
+			&MachineDeploymentSrategyStatusStrategy{builders.StatusStorageStrategySingleton},
 		), wingMachineSetStorage,
 		builders.NewApiResource( // Resource status endpoint
 			wing.InternalMachineSetStatus,
@@ -101,6 +115,32 @@ type MachineList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []Machine `json:"items"`
+}
+
+//
+// MachineDeployment Functions and Structs
+//
+// +k8s:deepcopy-gen=false
+type MachineDeploymentSchemeFns struct {
+	builders.DefaultSchemeFns
+}
+
+// +k8s:deepcopy-gen=false
+type MachineDeploymentSrategy struct {
+	builders.DefaultStorageStrategy
+}
+
+// +k8s:deepcopy-gen=false
+type MachineDeploymentSrategyStatusStrategy struct {
+	builders.DefaultStatusStorageStrategy
+}
+
+// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
+
+type MachineDeploymentList struct {
+	metav1.TypeMeta `json:",inline"`
+	metav1.ListMeta `json:"metadata,omitempty"`
+	Items           []MachineDeployment `json:"items"`
 }
 
 //

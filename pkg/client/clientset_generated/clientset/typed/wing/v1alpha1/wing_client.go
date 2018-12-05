@@ -14,6 +14,7 @@ import (
 type WingV1alpha1Interface interface {
 	RESTClient() rest.Interface
 	MachinesGetter
+	MachineDeploymentsGetter
 	MachineSetsGetter
 }
 
@@ -24,6 +25,10 @@ type WingV1alpha1Client struct {
 
 func (c *WingV1alpha1Client) Machines(namespace string) MachineInterface {
 	return newMachines(c, namespace)
+}
+
+func (c *WingV1alpha1Client) MachineDeployments(namespace string) MachineDeploymentInterface {
+	return newMachineDeployments(c, namespace)
 }
 
 func (c *WingV1alpha1Client) MachineSets(namespace string) MachineSetInterface {

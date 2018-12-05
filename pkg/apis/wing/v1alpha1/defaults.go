@@ -9,7 +9,14 @@ func addDefaultingFuncs(scheme *runtime.Scheme) error {
 	return RegisterDefaults(scheme)
 }
 
-func SetDefaults_Environment(obj *MachineSetSpec) {
+func SetDefaults_MachineSet(obj *MachineSetSpec) {
+	if obj.Replicas == nil {
+		var replicas int32 = 1
+		obj.Replicas = &replicas
+	}
+}
+
+func SetDefaults_MachineDeployment(obj *MachineDeploymentSpec) {
 	if obj.Replicas == nil {
 		var replicas int32 = 1
 		obj.Replicas = &replicas

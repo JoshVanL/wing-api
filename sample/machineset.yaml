@@ -1,0 +1,13 @@
+apiVersion: wing.tarmak.io/v1alpha1
+kind: MachineSet
+metadata:
+  name: machineset-example
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: tarmak
+  template:
+    spec:
+      converge:
+        hash: foo

@@ -20,6 +20,7 @@ package controller
 
 import (
 	"github.com/jetstack/wing-api/pkg/controller/machine"
+	"github.com/jetstack/wing-api/pkg/controller/machinedeployment"
 	"github.com/jetstack/wing-api/pkg/controller/machineset"
 	"github.com/jetstack/wing-api/pkg/controller/sharedinformers"
 	"github.com/kubernetes-incubator/apiserver-builder/pkg/controller"
@@ -31,6 +32,7 @@ func GetAllControllers(config *rest.Config) ([]controller.Controller, chan struc
 	si := sharedinformers.NewSharedInformers(config, shutdown)
 	return []controller.Controller{
 		machine.NewMachineController(config, si),
+		machinedeployment.NewMachineDeploymentController(config, si),
 		machineset.NewMachineSetController(config, si),
 	}, shutdown
 }

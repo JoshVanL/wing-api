@@ -13,6 +13,7 @@ import (
 	common "github.com/jetstack/wing-api/pkg/apis/wing/common"
 	conversion "k8s.io/apimachinery/pkg/conversion"
 	runtime "k8s.io/apimachinery/pkg/runtime"
+	intstr "k8s.io/apimachinery/pkg/util/intstr"
 )
 
 func init() {
@@ -32,6 +33,76 @@ func RegisterConversions(s *runtime.Scheme) error {
 	}); err != nil {
 		return err
 	}
+	if err := s.AddGeneratedConversionFunc((*MachineDeployment)(nil), (*wing.MachineDeployment)(nil), func(a, b interface{}, scope conversion.Scope) error {
+		return Convert_v1alpha1_MachineDeployment_To_wing_MachineDeployment(a.(*MachineDeployment), b.(*wing.MachineDeployment), scope)
+	}); err != nil {
+		return err
+	}
+	if err := s.AddGeneratedConversionFunc((*wing.MachineDeployment)(nil), (*MachineDeployment)(nil), func(a, b interface{}, scope conversion.Scope) error {
+		return Convert_wing_MachineDeployment_To_v1alpha1_MachineDeployment(a.(*wing.MachineDeployment), b.(*MachineDeployment), scope)
+	}); err != nil {
+		return err
+	}
+	if err := s.AddGeneratedConversionFunc((*MachineDeploymentList)(nil), (*wing.MachineDeploymentList)(nil), func(a, b interface{}, scope conversion.Scope) error {
+		return Convert_v1alpha1_MachineDeploymentList_To_wing_MachineDeploymentList(a.(*MachineDeploymentList), b.(*wing.MachineDeploymentList), scope)
+	}); err != nil {
+		return err
+	}
+	if err := s.AddGeneratedConversionFunc((*wing.MachineDeploymentList)(nil), (*MachineDeploymentList)(nil), func(a, b interface{}, scope conversion.Scope) error {
+		return Convert_wing_MachineDeploymentList_To_v1alpha1_MachineDeploymentList(a.(*wing.MachineDeploymentList), b.(*MachineDeploymentList), scope)
+	}); err != nil {
+		return err
+	}
+	if err := s.AddGeneratedConversionFunc((*MachineDeploymentSpec)(nil), (*wing.MachineDeploymentSpec)(nil), func(a, b interface{}, scope conversion.Scope) error {
+		return Convert_v1alpha1_MachineDeploymentSpec_To_wing_MachineDeploymentSpec(a.(*MachineDeploymentSpec), b.(*wing.MachineDeploymentSpec), scope)
+	}); err != nil {
+		return err
+	}
+	if err := s.AddGeneratedConversionFunc((*wing.MachineDeploymentSpec)(nil), (*MachineDeploymentSpec)(nil), func(a, b interface{}, scope conversion.Scope) error {
+		return Convert_wing_MachineDeploymentSpec_To_v1alpha1_MachineDeploymentSpec(a.(*wing.MachineDeploymentSpec), b.(*MachineDeploymentSpec), scope)
+	}); err != nil {
+		return err
+	}
+	if err := s.AddGeneratedConversionFunc((*MachineDeploymentSrategy)(nil), (*wing.MachineDeploymentSrategy)(nil), func(a, b interface{}, scope conversion.Scope) error {
+		return Convert_v1alpha1_MachineDeploymentSrategy_To_wing_MachineDeploymentSrategy(a.(*MachineDeploymentSrategy), b.(*wing.MachineDeploymentSrategy), scope)
+	}); err != nil {
+		return err
+	}
+	if err := s.AddGeneratedConversionFunc((*wing.MachineDeploymentSrategy)(nil), (*MachineDeploymentSrategy)(nil), func(a, b interface{}, scope conversion.Scope) error {
+		return Convert_wing_MachineDeploymentSrategy_To_v1alpha1_MachineDeploymentSrategy(a.(*wing.MachineDeploymentSrategy), b.(*MachineDeploymentSrategy), scope)
+	}); err != nil {
+		return err
+	}
+	if err := s.AddGeneratedConversionFunc((*MachineDeploymentSrategyStatusStrategy)(nil), (*wing.MachineDeploymentSrategyStatusStrategy)(nil), func(a, b interface{}, scope conversion.Scope) error {
+		return Convert_v1alpha1_MachineDeploymentSrategyStatusStrategy_To_wing_MachineDeploymentSrategyStatusStrategy(a.(*MachineDeploymentSrategyStatusStrategy), b.(*wing.MachineDeploymentSrategyStatusStrategy), scope)
+	}); err != nil {
+		return err
+	}
+	if err := s.AddGeneratedConversionFunc((*wing.MachineDeploymentSrategyStatusStrategy)(nil), (*MachineDeploymentSrategyStatusStrategy)(nil), func(a, b interface{}, scope conversion.Scope) error {
+		return Convert_wing_MachineDeploymentSrategyStatusStrategy_To_v1alpha1_MachineDeploymentSrategyStatusStrategy(a.(*wing.MachineDeploymentSrategyStatusStrategy), b.(*MachineDeploymentSrategyStatusStrategy), scope)
+	}); err != nil {
+		return err
+	}
+	if err := s.AddGeneratedConversionFunc((*MachineDeploymentStatus)(nil), (*wing.MachineDeploymentStatus)(nil), func(a, b interface{}, scope conversion.Scope) error {
+		return Convert_v1alpha1_MachineDeploymentStatus_To_wing_MachineDeploymentStatus(a.(*MachineDeploymentStatus), b.(*wing.MachineDeploymentStatus), scope)
+	}); err != nil {
+		return err
+	}
+	if err := s.AddGeneratedConversionFunc((*wing.MachineDeploymentStatus)(nil), (*MachineDeploymentStatus)(nil), func(a, b interface{}, scope conversion.Scope) error {
+		return Convert_wing_MachineDeploymentStatus_To_v1alpha1_MachineDeploymentStatus(a.(*wing.MachineDeploymentStatus), b.(*MachineDeploymentStatus), scope)
+	}); err != nil {
+		return err
+	}
+	if err := s.AddGeneratedConversionFunc((*MachineDeploymentStrategy)(nil), (*wing.MachineDeploymentStrategy)(nil), func(a, b interface{}, scope conversion.Scope) error {
+		return Convert_v1alpha1_MachineDeploymentStrategy_To_wing_MachineDeploymentStrategy(a.(*MachineDeploymentStrategy), b.(*wing.MachineDeploymentStrategy), scope)
+	}); err != nil {
+		return err
+	}
+	if err := s.AddGeneratedConversionFunc((*wing.MachineDeploymentStrategy)(nil), (*MachineDeploymentStrategy)(nil), func(a, b interface{}, scope conversion.Scope) error {
+		return Convert_wing_MachineDeploymentStrategy_To_v1alpha1_MachineDeploymentStrategy(a.(*wing.MachineDeploymentStrategy), b.(*MachineDeploymentStrategy), scope)
+	}); err != nil {
+		return err
+	}
 	if err := s.AddGeneratedConversionFunc((*MachineList)(nil), (*wing.MachineList)(nil), func(a, b interface{}, scope conversion.Scope) error {
 		return Convert_v1alpha1_MachineList_To_wing_MachineList(a.(*MachineList), b.(*wing.MachineList), scope)
 	}); err != nil {
@@ -39,6 +110,16 @@ func RegisterConversions(s *runtime.Scheme) error {
 	}
 	if err := s.AddGeneratedConversionFunc((*wing.MachineList)(nil), (*MachineList)(nil), func(a, b interface{}, scope conversion.Scope) error {
 		return Convert_wing_MachineList_To_v1alpha1_MachineList(a.(*wing.MachineList), b.(*MachineList), scope)
+	}); err != nil {
+		return err
+	}
+	if err := s.AddGeneratedConversionFunc((*MachineRollingUpdateDeployment)(nil), (*wing.MachineRollingUpdateDeployment)(nil), func(a, b interface{}, scope conversion.Scope) error {
+		return Convert_v1alpha1_MachineRollingUpdateDeployment_To_wing_MachineRollingUpdateDeployment(a.(*MachineRollingUpdateDeployment), b.(*wing.MachineRollingUpdateDeployment), scope)
+	}); err != nil {
+		return err
+	}
+	if err := s.AddGeneratedConversionFunc((*wing.MachineRollingUpdateDeployment)(nil), (*MachineRollingUpdateDeployment)(nil), func(a, b interface{}, scope conversion.Scope) error {
+		return Convert_wing_MachineRollingUpdateDeployment_To_v1alpha1_MachineRollingUpdateDeployment(a.(*wing.MachineRollingUpdateDeployment), b.(*MachineRollingUpdateDeployment), scope)
 	}); err != nil {
 		return err
 	}
@@ -207,6 +288,190 @@ func Convert_wing_Machine_To_v1alpha1_Machine(in *wing.Machine, out *Machine, s 
 	return autoConvert_wing_Machine_To_v1alpha1_Machine(in, out, s)
 }
 
+func autoConvert_v1alpha1_MachineDeployment_To_wing_MachineDeployment(in *MachineDeployment, out *wing.MachineDeployment, s conversion.Scope) error {
+	out.ObjectMeta = in.ObjectMeta
+	if err := Convert_v1alpha1_MachineDeploymentSpec_To_wing_MachineDeploymentSpec(&in.Spec, &out.Spec, s); err != nil {
+		return err
+	}
+	if err := Convert_v1alpha1_MachineDeploymentStatus_To_wing_MachineDeploymentStatus(&in.Status, &out.Status, s); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Convert_v1alpha1_MachineDeployment_To_wing_MachineDeployment is an autogenerated conversion function.
+func Convert_v1alpha1_MachineDeployment_To_wing_MachineDeployment(in *MachineDeployment, out *wing.MachineDeployment, s conversion.Scope) error {
+	return autoConvert_v1alpha1_MachineDeployment_To_wing_MachineDeployment(in, out, s)
+}
+
+func autoConvert_wing_MachineDeployment_To_v1alpha1_MachineDeployment(in *wing.MachineDeployment, out *MachineDeployment, s conversion.Scope) error {
+	out.ObjectMeta = in.ObjectMeta
+	if err := Convert_wing_MachineDeploymentSpec_To_v1alpha1_MachineDeploymentSpec(&in.Spec, &out.Spec, s); err != nil {
+		return err
+	}
+	if err := Convert_wing_MachineDeploymentStatus_To_v1alpha1_MachineDeploymentStatus(&in.Status, &out.Status, s); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Convert_wing_MachineDeployment_To_v1alpha1_MachineDeployment is an autogenerated conversion function.
+func Convert_wing_MachineDeployment_To_v1alpha1_MachineDeployment(in *wing.MachineDeployment, out *MachineDeployment, s conversion.Scope) error {
+	return autoConvert_wing_MachineDeployment_To_v1alpha1_MachineDeployment(in, out, s)
+}
+
+func autoConvert_v1alpha1_MachineDeploymentList_To_wing_MachineDeploymentList(in *MachineDeploymentList, out *wing.MachineDeploymentList, s conversion.Scope) error {
+	out.ListMeta = in.ListMeta
+	out.Items = *(*[]wing.MachineDeployment)(unsafe.Pointer(&in.Items))
+	return nil
+}
+
+// Convert_v1alpha1_MachineDeploymentList_To_wing_MachineDeploymentList is an autogenerated conversion function.
+func Convert_v1alpha1_MachineDeploymentList_To_wing_MachineDeploymentList(in *MachineDeploymentList, out *wing.MachineDeploymentList, s conversion.Scope) error {
+	return autoConvert_v1alpha1_MachineDeploymentList_To_wing_MachineDeploymentList(in, out, s)
+}
+
+func autoConvert_wing_MachineDeploymentList_To_v1alpha1_MachineDeploymentList(in *wing.MachineDeploymentList, out *MachineDeploymentList, s conversion.Scope) error {
+	out.ListMeta = in.ListMeta
+	out.Items = *(*[]MachineDeployment)(unsafe.Pointer(&in.Items))
+	return nil
+}
+
+// Convert_wing_MachineDeploymentList_To_v1alpha1_MachineDeploymentList is an autogenerated conversion function.
+func Convert_wing_MachineDeploymentList_To_v1alpha1_MachineDeploymentList(in *wing.MachineDeploymentList, out *MachineDeploymentList, s conversion.Scope) error {
+	return autoConvert_wing_MachineDeploymentList_To_v1alpha1_MachineDeploymentList(in, out, s)
+}
+
+func autoConvert_v1alpha1_MachineDeploymentSpec_To_wing_MachineDeploymentSpec(in *MachineDeploymentSpec, out *wing.MachineDeploymentSpec, s conversion.Scope) error {
+	out.Replicas = (*int32)(unsafe.Pointer(in.Replicas))
+	out.Selector = in.Selector
+	if err := Convert_v1alpha1_MachineTemplateSpec_To_wing_MachineTemplateSpec(&in.Template, &out.Template, s); err != nil {
+		return err
+	}
+	out.Strategy = (*wing.MachineDeploymentStrategy)(unsafe.Pointer(in.Strategy))
+	out.MinReadySeconds = (*int32)(unsafe.Pointer(in.MinReadySeconds))
+	out.RevisionHistoryLimit = (*int32)(unsafe.Pointer(in.RevisionHistoryLimit))
+	out.Paused = in.Paused
+	out.ProgressDeadlineSeconds = (*int32)(unsafe.Pointer(in.ProgressDeadlineSeconds))
+	return nil
+}
+
+// Convert_v1alpha1_MachineDeploymentSpec_To_wing_MachineDeploymentSpec is an autogenerated conversion function.
+func Convert_v1alpha1_MachineDeploymentSpec_To_wing_MachineDeploymentSpec(in *MachineDeploymentSpec, out *wing.MachineDeploymentSpec, s conversion.Scope) error {
+	return autoConvert_v1alpha1_MachineDeploymentSpec_To_wing_MachineDeploymentSpec(in, out, s)
+}
+
+func autoConvert_wing_MachineDeploymentSpec_To_v1alpha1_MachineDeploymentSpec(in *wing.MachineDeploymentSpec, out *MachineDeploymentSpec, s conversion.Scope) error {
+	out.Replicas = (*int32)(unsafe.Pointer(in.Replicas))
+	out.Selector = in.Selector
+	if err := Convert_wing_MachineTemplateSpec_To_v1alpha1_MachineTemplateSpec(&in.Template, &out.Template, s); err != nil {
+		return err
+	}
+	out.Strategy = (*MachineDeploymentStrategy)(unsafe.Pointer(in.Strategy))
+	out.MinReadySeconds = (*int32)(unsafe.Pointer(in.MinReadySeconds))
+	out.RevisionHistoryLimit = (*int32)(unsafe.Pointer(in.RevisionHistoryLimit))
+	out.Paused = in.Paused
+	out.ProgressDeadlineSeconds = (*int32)(unsafe.Pointer(in.ProgressDeadlineSeconds))
+	return nil
+}
+
+// Convert_wing_MachineDeploymentSpec_To_v1alpha1_MachineDeploymentSpec is an autogenerated conversion function.
+func Convert_wing_MachineDeploymentSpec_To_v1alpha1_MachineDeploymentSpec(in *wing.MachineDeploymentSpec, out *MachineDeploymentSpec, s conversion.Scope) error {
+	return autoConvert_wing_MachineDeploymentSpec_To_v1alpha1_MachineDeploymentSpec(in, out, s)
+}
+
+func autoConvert_v1alpha1_MachineDeploymentSrategy_To_wing_MachineDeploymentSrategy(in *MachineDeploymentSrategy, out *wing.MachineDeploymentSrategy, s conversion.Scope) error {
+	out.DefaultStorageStrategy = in.DefaultStorageStrategy
+	return nil
+}
+
+// Convert_v1alpha1_MachineDeploymentSrategy_To_wing_MachineDeploymentSrategy is an autogenerated conversion function.
+func Convert_v1alpha1_MachineDeploymentSrategy_To_wing_MachineDeploymentSrategy(in *MachineDeploymentSrategy, out *wing.MachineDeploymentSrategy, s conversion.Scope) error {
+	return autoConvert_v1alpha1_MachineDeploymentSrategy_To_wing_MachineDeploymentSrategy(in, out, s)
+}
+
+func autoConvert_wing_MachineDeploymentSrategy_To_v1alpha1_MachineDeploymentSrategy(in *wing.MachineDeploymentSrategy, out *MachineDeploymentSrategy, s conversion.Scope) error {
+	out.DefaultStorageStrategy = in.DefaultStorageStrategy
+	return nil
+}
+
+// Convert_wing_MachineDeploymentSrategy_To_v1alpha1_MachineDeploymentSrategy is an autogenerated conversion function.
+func Convert_wing_MachineDeploymentSrategy_To_v1alpha1_MachineDeploymentSrategy(in *wing.MachineDeploymentSrategy, out *MachineDeploymentSrategy, s conversion.Scope) error {
+	return autoConvert_wing_MachineDeploymentSrategy_To_v1alpha1_MachineDeploymentSrategy(in, out, s)
+}
+
+func autoConvert_v1alpha1_MachineDeploymentSrategyStatusStrategy_To_wing_MachineDeploymentSrategyStatusStrategy(in *MachineDeploymentSrategyStatusStrategy, out *wing.MachineDeploymentSrategyStatusStrategy, s conversion.Scope) error {
+	out.DefaultStatusStorageStrategy = in.DefaultStatusStorageStrategy
+	return nil
+}
+
+// Convert_v1alpha1_MachineDeploymentSrategyStatusStrategy_To_wing_MachineDeploymentSrategyStatusStrategy is an autogenerated conversion function.
+func Convert_v1alpha1_MachineDeploymentSrategyStatusStrategy_To_wing_MachineDeploymentSrategyStatusStrategy(in *MachineDeploymentSrategyStatusStrategy, out *wing.MachineDeploymentSrategyStatusStrategy, s conversion.Scope) error {
+	return autoConvert_v1alpha1_MachineDeploymentSrategyStatusStrategy_To_wing_MachineDeploymentSrategyStatusStrategy(in, out, s)
+}
+
+func autoConvert_wing_MachineDeploymentSrategyStatusStrategy_To_v1alpha1_MachineDeploymentSrategyStatusStrategy(in *wing.MachineDeploymentSrategyStatusStrategy, out *MachineDeploymentSrategyStatusStrategy, s conversion.Scope) error {
+	out.DefaultStatusStorageStrategy = in.DefaultStatusStorageStrategy
+	return nil
+}
+
+// Convert_wing_MachineDeploymentSrategyStatusStrategy_To_v1alpha1_MachineDeploymentSrategyStatusStrategy is an autogenerated conversion function.
+func Convert_wing_MachineDeploymentSrategyStatusStrategy_To_v1alpha1_MachineDeploymentSrategyStatusStrategy(in *wing.MachineDeploymentSrategyStatusStrategy, out *MachineDeploymentSrategyStatusStrategy, s conversion.Scope) error {
+	return autoConvert_wing_MachineDeploymentSrategyStatusStrategy_To_v1alpha1_MachineDeploymentSrategyStatusStrategy(in, out, s)
+}
+
+func autoConvert_v1alpha1_MachineDeploymentStatus_To_wing_MachineDeploymentStatus(in *MachineDeploymentStatus, out *wing.MachineDeploymentStatus, s conversion.Scope) error {
+	out.ObservedGeneration = in.ObservedGeneration
+	out.Replicas = in.Replicas
+	out.UpdatedReplicas = in.UpdatedReplicas
+	out.ReadyReplicas = in.ReadyReplicas
+	out.AvailableReplicas = in.AvailableReplicas
+	out.UnavailableReplicas = in.UnavailableReplicas
+	return nil
+}
+
+// Convert_v1alpha1_MachineDeploymentStatus_To_wing_MachineDeploymentStatus is an autogenerated conversion function.
+func Convert_v1alpha1_MachineDeploymentStatus_To_wing_MachineDeploymentStatus(in *MachineDeploymentStatus, out *wing.MachineDeploymentStatus, s conversion.Scope) error {
+	return autoConvert_v1alpha1_MachineDeploymentStatus_To_wing_MachineDeploymentStatus(in, out, s)
+}
+
+func autoConvert_wing_MachineDeploymentStatus_To_v1alpha1_MachineDeploymentStatus(in *wing.MachineDeploymentStatus, out *MachineDeploymentStatus, s conversion.Scope) error {
+	out.ObservedGeneration = in.ObservedGeneration
+	out.Replicas = in.Replicas
+	out.UpdatedReplicas = in.UpdatedReplicas
+	out.ReadyReplicas = in.ReadyReplicas
+	out.AvailableReplicas = in.AvailableReplicas
+	out.UnavailableReplicas = in.UnavailableReplicas
+	return nil
+}
+
+// Convert_wing_MachineDeploymentStatus_To_v1alpha1_MachineDeploymentStatus is an autogenerated conversion function.
+func Convert_wing_MachineDeploymentStatus_To_v1alpha1_MachineDeploymentStatus(in *wing.MachineDeploymentStatus, out *MachineDeploymentStatus, s conversion.Scope) error {
+	return autoConvert_wing_MachineDeploymentStatus_To_v1alpha1_MachineDeploymentStatus(in, out, s)
+}
+
+func autoConvert_v1alpha1_MachineDeploymentStrategy_To_wing_MachineDeploymentStrategy(in *MachineDeploymentStrategy, out *wing.MachineDeploymentStrategy, s conversion.Scope) error {
+	out.Type = common.MachineDeploymentStrategyType(in.Type)
+	out.RollingUpdate = (*wing.MachineRollingUpdateDeployment)(unsafe.Pointer(in.RollingUpdate))
+	return nil
+}
+
+// Convert_v1alpha1_MachineDeploymentStrategy_To_wing_MachineDeploymentStrategy is an autogenerated conversion function.
+func Convert_v1alpha1_MachineDeploymentStrategy_To_wing_MachineDeploymentStrategy(in *MachineDeploymentStrategy, out *wing.MachineDeploymentStrategy, s conversion.Scope) error {
+	return autoConvert_v1alpha1_MachineDeploymentStrategy_To_wing_MachineDeploymentStrategy(in, out, s)
+}
+
+func autoConvert_wing_MachineDeploymentStrategy_To_v1alpha1_MachineDeploymentStrategy(in *wing.MachineDeploymentStrategy, out *MachineDeploymentStrategy, s conversion.Scope) error {
+	out.Type = common.MachineDeploymentStrategyType(in.Type)
+	out.RollingUpdate = (*MachineRollingUpdateDeployment)(unsafe.Pointer(in.RollingUpdate))
+	return nil
+}
+
+// Convert_wing_MachineDeploymentStrategy_To_v1alpha1_MachineDeploymentStrategy is an autogenerated conversion function.
+func Convert_wing_MachineDeploymentStrategy_To_v1alpha1_MachineDeploymentStrategy(in *wing.MachineDeploymentStrategy, out *MachineDeploymentStrategy, s conversion.Scope) error {
+	return autoConvert_wing_MachineDeploymentStrategy_To_v1alpha1_MachineDeploymentStrategy(in, out, s)
+}
+
 func autoConvert_v1alpha1_MachineList_To_wing_MachineList(in *MachineList, out *wing.MachineList, s conversion.Scope) error {
 	out.ListMeta = in.ListMeta
 	out.Items = *(*[]wing.Machine)(unsafe.Pointer(&in.Items))
@@ -227,6 +492,28 @@ func autoConvert_wing_MachineList_To_v1alpha1_MachineList(in *wing.MachineList, 
 // Convert_wing_MachineList_To_v1alpha1_MachineList is an autogenerated conversion function.
 func Convert_wing_MachineList_To_v1alpha1_MachineList(in *wing.MachineList, out *MachineList, s conversion.Scope) error {
 	return autoConvert_wing_MachineList_To_v1alpha1_MachineList(in, out, s)
+}
+
+func autoConvert_v1alpha1_MachineRollingUpdateDeployment_To_wing_MachineRollingUpdateDeployment(in *MachineRollingUpdateDeployment, out *wing.MachineRollingUpdateDeployment, s conversion.Scope) error {
+	out.MaxUnavailable = (*intstr.IntOrString)(unsafe.Pointer(in.MaxUnavailable))
+	out.MaxSurge = (*intstr.IntOrString)(unsafe.Pointer(in.MaxSurge))
+	return nil
+}
+
+// Convert_v1alpha1_MachineRollingUpdateDeployment_To_wing_MachineRollingUpdateDeployment is an autogenerated conversion function.
+func Convert_v1alpha1_MachineRollingUpdateDeployment_To_wing_MachineRollingUpdateDeployment(in *MachineRollingUpdateDeployment, out *wing.MachineRollingUpdateDeployment, s conversion.Scope) error {
+	return autoConvert_v1alpha1_MachineRollingUpdateDeployment_To_wing_MachineRollingUpdateDeployment(in, out, s)
+}
+
+func autoConvert_wing_MachineRollingUpdateDeployment_To_v1alpha1_MachineRollingUpdateDeployment(in *wing.MachineRollingUpdateDeployment, out *MachineRollingUpdateDeployment, s conversion.Scope) error {
+	out.MaxUnavailable = (*intstr.IntOrString)(unsafe.Pointer(in.MaxUnavailable))
+	out.MaxSurge = (*intstr.IntOrString)(unsafe.Pointer(in.MaxSurge))
+	return nil
+}
+
+// Convert_wing_MachineRollingUpdateDeployment_To_v1alpha1_MachineRollingUpdateDeployment is an autogenerated conversion function.
+func Convert_wing_MachineRollingUpdateDeployment_To_v1alpha1_MachineRollingUpdateDeployment(in *wing.MachineRollingUpdateDeployment, out *MachineRollingUpdateDeployment, s conversion.Scope) error {
+	return autoConvert_wing_MachineRollingUpdateDeployment_To_v1alpha1_MachineRollingUpdateDeployment(in, out, s)
 }
 
 func autoConvert_v1alpha1_MachineSet_To_wing_MachineSet(in *MachineSet, out *wing.MachineSet, s conversion.Scope) error {

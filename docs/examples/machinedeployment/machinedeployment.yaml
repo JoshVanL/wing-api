@@ -1,0 +1,7 @@
+note: MachineDeployment Example
+sample: |
+  apiVersion: wing.tarmak.io/v1alpha1
+  kind: MachineDeployment
+  metadata:
+    name: machinedeployment-example
+  spec:

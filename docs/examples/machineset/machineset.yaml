@@ -1,0 +1,7 @@
+note: MachineSet Example
+sample: |
+  apiVersion: wing.tarmak.io/v1alpha1
+  kind: MachineSet
+  metadata:
+    name: machineset-example
+  spec:

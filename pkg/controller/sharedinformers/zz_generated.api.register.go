@@ -53,6 +53,7 @@ func NewSharedInformers(config *rest.Config, shutdown <-chan struct{}) *SharedIn
 // startInformers starts all of the informers
 func (si *SharedInformers) startInformers(shutdown <-chan struct{}) {
 	go si.Factory.Wing().V1alpha1().Machines().Informer().Run(shutdown)
+	go si.Factory.Wing().V1alpha1().MachineDeployments().Informer().Run(shutdown)
 	go si.Factory.Wing().V1alpha1().MachineSets().Informer().Run(shutdown)
 }
 
