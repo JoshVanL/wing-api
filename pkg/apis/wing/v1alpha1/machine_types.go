@@ -1,19 +1,10 @@
-
 // Copyright Jetstack Ltd. See LICENSE for details.
-
-
 package v1alpha1
 
 import (
-	"log"
-	"context"
-
-	"k8s.io/apimachinery/pkg/runtime"
-
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-	"k8s.io/apimachinery/pkg/util/validation/field"
 
-	"github.com/jetstack/tarmak/pkg/apis/wing"
+	"github.com/jetstack/wing-api/pkg/apis/wing/common"
 )
 
 // +genclient
@@ -21,7 +12,7 @@ import (
 
 // Machine
 // +k8s:openapi-gen=true
-// +resource:path=machines,strategy=MachineStrategy
+// +resource:path=machines
 type Machine struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
@@ -32,24 +23,30 @@ type Machine struct {
 
 // MachineSpec defines the desired state of Machine
 type MachineSpec struct {
+	Converge *MachineSpecManifest `json:"converge,omitempty"`
+	DryRun   *MachineSpecManifest `json:"dryRun,omitempty"`
+}
+
+//  InstaceSpecManifest defines location and hash for a specific manifest
+type MachineSpecManifest struct {
+	Path             string      `json:"path,omitempty"`             // PATH to manifests (tar.gz)
+	Hash             string      `json:"hash,omitempty"`             // hash of manifests, prefixed with type (eg: sha256:xyz)
+	RequestTimestamp metav1.Time `json:"requestTimestamp,omitempty"` // timestamp when a converge was requested
 }
 
 // MachineStatus defines the observed state of Machine
 type MachineStatus struct {
+	Converge *MachineStatusManifest `json:"converge,omitempty"`
+	DryRun   *MachineStatusManifest `json:"dryRun,omitempty"`
 }
 
-// Validate checks that an instance of Machine is well formed
-func (MachineStrategy) Validate(ctx context.Context, obj runtime.Object) field.ErrorList {
-	o := obj.(*wing.Machine)
-	log.Printf("Validating fields for Machine %s\n", o.Name)
-	errors := field.ErrorList{}
-	// perform validation here and add to errors using field.Invalid
-	return errors
-}
-
-// DefaultingFunction sets default Machine field values
-func (MachineSchemeFns) DefaultingFunction(o interface{}) {
-	obj := o.(*Machine)
-	// set default field values here
-	log.Printf("Defaulting fields for Machine %s\n", obj.Name)
+//  InstaceSpecManifest defines the state and hash of a run manifest
+//type MachineManifestState string
+type MachineStatusManifest struct {
+	State common.MachineManifestState `json:"state,omitempty"`
+	//State               string      `json:"state,omitempty"`
+	Hash                string      `json:"hash,omitempty"`                // hash of manifests, prefixed with type (eg: sha256:xyz)
+	LastUpdateTimestamp metav1.Time `json:"lastUpdateTimestamp,omitempty"` // timestamp when a converge was requested
+	Messages            []string    `json:"messages,omitempty"`            // contains output of the retries
+	ExitCodes           []int       `json:"exitCodes,omitempty"`           // return code of the retries
 }
